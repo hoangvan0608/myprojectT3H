@@ -1,7 +1,7 @@
 package vn.t3h.java2109.services;
 
 import org.springframework.stereotype.Service;
-import vn.t3h.java2109.dto.CategoryDTO;
+import vn.t3h.java2109.dto.CateogryDTO;
 import vn.t3h.java2109.utils.DbUtils;
 
 import java.sql.Connection;
@@ -14,16 +14,16 @@ import java.util.List;
 @Service
 public class CategoryService {
 
-    public List<CategoryDTO> getAllCategories() throws SQLException {
+    public List<CateogryDTO> getAllCategories() {
 
-        List<CategoryDTO> list = new ArrayList<>();
+        List<CateogryDTO> list = new ArrayList<>();
         try(Connection connection = DbUtils.getConnection())
         {
             try (Statement statement = connection.createStatement()) {
               ResultSet resultSet = statement.executeQuery("Select * from category");
               while (resultSet.next())
               {
-                  list.add(new CategoryDTO(resultSet.getInt(1), resultSet.getString(2)));
+                  list.add(new CateogryDTO(resultSet.getInt(1), resultSet.getString(2)));
               }
             } catch (Exception e)
             {
@@ -33,6 +33,21 @@ public class CategoryService {
             e.printStackTrace();
         }
         return list;
+    }
+
+    public String getCategryName(Integer id) throws SQLException {
+        String name = "";
+        try(Connection connection = DbUtils.getConnection()) {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery("Select `name` from category where id = "+id);
+            if(resultSet != null){
+                while(resultSet.next()){
+                    name = resultSet.getString(1);
+                    break;
+                }
+            }
+        }
+        return  name;
     }
 
 }

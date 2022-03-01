@@ -20,8 +20,7 @@ public class FrontEndHomeController {
 
     @RequestMapping(value = {"/","home"})
     public String homePage(Model model) throws SQLException {
-        List<ProductDTO> productDTOList = productService.getAllProduct();
-        model.addAttribute("products",productDTOList);
+        model.addAttribute("products",productService.findAll(1,100,""));
         return "frontend/home";
     }
 

@@ -16,27 +16,48 @@ public class ProductService implements ITableService<ProductDTO> {
 
     public Boolean deleteProduct(Integer id)
     {
-        String sql = "DELETE FROM `myshop`.`product` WHERE (`id` = ?)";
+        String sql = "DELETE FROM `product` WHERE (`id` = "+id+")";
         return DbUtils.saveDb(sql);
     }
 
     public Boolean saveProduct(ProductDTO dto)
     {
+        Integer id = dto.getId();
         String img ="/frontend/images/home/"+ dto.getImg();
         Double price = dto.getPrice();
         String des = dto.getDes();
         String name = dto.getName();
         Integer category = dto.getCategory();
         StringBuilder sql = new StringBuilder();
-        sql.append("Insert into product (img, price, des, name, category) value ('")
-                .append(img).append("', ")
-                .append(price).append(", '")
-                .append(des).append("', '")
-                .append(name).append("', '")
-                .append(category).append("')");
-        return DbUtils.saveDb(sql.toString());
+        if(dto.getId() == null)
+        {
+            sql.append("Insert into product (img, price, des, name, category) value ('")
+                    .append(img).append("', ")
+                    .append(price).append(", '")
+                    .append(des).append("', '")
+                    .append(name).append("', '")
+                    .append(category).append("')");
+            return DbUtils.saveDb(sql.toString());
+        }
+        else {
+            return editProduct(dto);
+        }
+
     }
 
+    public Boolean editProduct(ProductDTO dto)
+    {
+        StringBuilder beans = new StringBuilder();
+        beans.append("UPDATE PRODUCT SET img = '").append("/frontend/images/home/")
+                .append(dto.getImg()).append("' , price = ")
+                .append(dto.getPrice()).append(", des = '")
+                .append(dto.getDes()).append("', name = '")
+                .append(dto.getName()).append("', category = ")
+                .append(dto.getCategory()).append(" where (id =")
+                .append(dto.getId()).append(")");
+
+        return DbUtils.saveDb(beans.toString());
+    }
 
     public ProductDTO detail(Integer id) throws SQLException {
         ProductDTO productDto = null;
@@ -105,14 +126,21 @@ public class ProductService implements ITableService<ProductDTO> {
 
             if(resultTotal != null){
                 while(resultTotal.next()){
-
+                    Integer total = resultTotal.getInt(1);
+                    Integer totalPages = total % perPage == 0 ? total / perPage : total / perPage + 1;
+                    result.setTotalPages(totalPages);
+                    result.setTotalItems(total);
+                    break;
                 }
             }
+            result.setData(listProducts);
+            result.setPage(page);
+            result.setPerPage(listProducts.size());
         } catch (SQLException e)
         {
             e.printStackTrace();
         }
-        return null;
+        return result;
     }
 
 }

@@ -12,7 +12,7 @@ public class TableDataDTO<T> {
     private List<T> data;
     private Integer page;
     private Integer perPage;
-    private Long totalItems;
-    private Long totalPages;
+    private Integer totalItems;
+    private Integer totalPages;
 
 }

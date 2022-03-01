@@ -16,7 +16,7 @@
 
 
     <div class="container">
-        <form class="row g-3 needs-validation" novalidate action="/backend/account/update" method="POST">
+        <form class="row g-3 needs-validation" novalidate action="/backend/account/save" method="POST">
             <div class="col-md-4">
                 <input value="${account.id}" name="id" hidden="true">
                 <label for="username" class="form-label">Username</label>
@@ -42,13 +42,12 @@
             <div class="col-md-2">
                 <label for="validationCustom04" class="form-label">Loại toài khoản</label>
                 <select name="role" class="form-select" id="validationCustom04" required>
-                    <option selected disabled value="">${account.role}</option>
-<%--                    <c:forEach items="${category}" var="category">--%>
-<%--                        <option value="${category.name}">${category.name}</option>--%>
-<%--                    </c:forEach>--%>
-                    <option value="MANAGER">Manager</option>
-                    <option value="ADMIN">Admin</option>
-                    <option value="USER">User</option>
+                    select name="category" class="form-select" id="validationCustom04" required>
+                    <option selected disabled value="">Chọn thể loại</option>
+                    <c:forEach items="${roles}" var="role">
+                        <option value="${role.name}" <c:if test="${role.name == account.role}">selected</c:if>>${role.name}</option>
+                    </c:forEach>
+                </select>
                 </select>
             </div>
             <div class="col-md-6">

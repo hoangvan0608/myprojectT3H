@@ -40,7 +40,7 @@
                 <select name="category" class="form-select" id="validationCustom04" required>
                     <option selected disabled value="">Chọn thể loại</option>
                     <c:forEach items="${category}" var="category">
-                        <option value="${category.name}">${category.name}</option>
+                        <option value="${category.id}">${category.name}</option>
                     </c:forEach>
                 </select>
                 <div class="invalid-feedback">

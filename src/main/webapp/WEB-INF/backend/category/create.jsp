@@ -7,47 +7,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jsp:include page="../common/head.jsp"></jsp:include>
-    <title>Tạo tài khoản</title>
+    <title>Sửa sản phẩm</title>
 </head>
 <body>
 <div class="container-fluid">
     <jsp:include page="../common/nav.jsp"></jsp:include>
-    <center><h1>Add Acount</h1></center>
+    <center><h1>Edit Product</h1></center>
 
 
     <div class="container">
-        <form class="row g-3 needs-validation" novalidate action="/backend/account/save" method="post">
+        <form class="row g-3 needs-validation" novalidate action="/backend/product/update" method="POST">
             <div class="col-md-4">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" placeholder="User name" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
-                <div class="valid-feedback">
-                    Looks good!
-                </div>
-            </div>
-            <div class="col-md-4">
-                <label for="re-password" class="form-label">Password</label>
-                <input type="password" class="form-control" id="re-password" name="re-password" placeholder="re-password" required>
+                <input value="${account.id}" name="id" hidden="true">
+                <label for="name" class="form-label">Tên thể loại</label>
+                <input type="text" class="form-control" id="name" value="${account.username}" name="name" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="col-md-4">
                 <label for="phone" class="form-label">Phone</label>
-                <input type="text" class="form-control" id="phone" name="phone" placeholder="phone" required>
+                <input type="text" class="form-control" id="phone" value="${account.phone}" name="phone" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="col-md-4">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" placeholder="Email" required>
+                <input type="email" class="form-control" id="email" name="email" value="${account.email}" placeholder="Email" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -55,18 +42,18 @@
             <div class="col-md-2">
                 <label for="validationCustom04" class="form-label">Loại toài khoản</label>
                 <select name="role" class="form-select" id="validationCustom04" required>
-                    <option selected disabled value="">---------</option>
-                    <c:forEach items="${roles}" var="role">
-                        <option value="${role.name}">${role.name}</option>
-                    </c:forEach>
-<%--                    <option value="MANAGER">Manager</option>--%>
-<%--                    <option value="ADMIN">Admin</option>--%>
-<%--                    <option value="USER">User</option>--%>
+                    <option selected disabled value="">${account.role}</option>
+                    <%--                    <c:forEach items="${category}" var="category">--%>
+                    <%--                        <option value="${category.name}">${category.name}</option>--%>
+                    <%--                    </c:forEach>--%>
+                    <option value="MANAGER">Manager</option>
+                    <option value="ADMIN">Admin</option>
+                    <option value="USER">User</option>
                 </select>
             </div>
             <div class="col-md-6">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="description" required>
+                <input type="text" class="form-control" id="description" value="${account.description}" name="description" placeholder="description" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -106,14 +93,6 @@
         Array.prototype.slice.call(forms)
             .forEach(function (form) {
                 form.addEventListener('submit', function (event) {
-                    if(document.getElementById('password').value != document.getElementById('re-password').value)
-                    {
-                        alert("Mật khẩu không khớp")
-                        event.preventDefault()
-                        event.stopPropagation()
-
-                    }
-
                     if (!form.checkValidity()) {
                         event.preventDefault()
                         event.stopPropagation()
