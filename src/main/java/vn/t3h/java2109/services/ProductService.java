@@ -23,7 +23,7 @@ public class ProductService implements ITableService<ProductDTO> {
     public Boolean saveProduct(ProductDTO dto)
     {
         Integer id = dto.getId();
-        String img ="/frontend/images/home/"+ dto.getImg();
+        String img =dto.getImg();
         Double price = dto.getPrice();
         String des = dto.getDes();
         String name = dto.getName();
@@ -48,7 +48,7 @@ public class ProductService implements ITableService<ProductDTO> {
     public Boolean editProduct(ProductDTO dto)
     {
         StringBuilder beans = new StringBuilder();
-        beans.append("UPDATE PRODUCT SET img = '").append("/frontend/images/home/")
+        beans.append("UPDATE PRODUCT SET img = '")
                 .append(dto.getImg()).append("' , price = ")
                 .append(dto.getPrice()).append(", des = '")
                 .append(dto.getDes()).append("', name = '")
@@ -62,8 +62,8 @@ public class ProductService implements ITableService<ProductDTO> {
     public ProductDTO detail(Integer id) throws SQLException {
         ProductDTO productDto = null;
         StringBuilder sql = new StringBuilder();
-        sql.append("SELECT * FROM product ");
-        sql.append(" where id = ").append(id);
+        sql.append("SELECT * FROM product");
+        sql.append(" where product.id = ").append(id);
         Connection connection = null;
         try {
             connection = DbUtils.getConnection();
@@ -76,6 +76,7 @@ public class ProductService implements ITableService<ProductDTO> {
                     String des = resultSet.getString(4);
                     String name = resultSet.getString(5);
                     Integer category = resultSet.getInt(6);
+
                     productDto = new ProductDTO(id,img,price,des,name,category);
                 }
             }

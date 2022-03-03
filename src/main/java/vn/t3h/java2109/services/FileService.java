@@ -3,7 +3,11 @@ package vn.t3h.java2109.services;
 import org.springframework.web.multipart.MultipartFile;
 import vn.t3h.java2109.utils.FileUtils;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Date;
 
 public class FileService implements IFileService{
@@ -23,5 +27,9 @@ public class FileService implements IFileService{
         // return link uploaded file
         return nameImage;
     }
+
+
+
+
 
 }

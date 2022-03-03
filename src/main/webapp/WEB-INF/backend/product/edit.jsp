@@ -64,7 +64,7 @@
         </div>
         <div class="col-md-8">
             <label for="img" class="form-label">Product image file</label>
-            <input class="form-control" name="img" type="file" id="img" required >
+            <input class="form-control" name="img" type="file" id="img" src="api/product-image/${product.img}" required >  <%--/${product.img} = 1--%>
             <%--                <div class="valid-feedback">--%>
             <%--                    Looks good!--%>
             <%--                </div>--%>
