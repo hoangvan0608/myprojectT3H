@@ -1,9 +1,10 @@
-package vn.t3h.java2109.services;
+package vn.t3h.java2109.services.Impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.t3h.java2109.dto.ProductDTO;
 import vn.t3h.java2109.dto.TableDataDTO;
+import vn.t3h.java2109.services.ITableService;
 import vn.t3h.java2109.utils.DbUtils;
 
 import java.sql.*;

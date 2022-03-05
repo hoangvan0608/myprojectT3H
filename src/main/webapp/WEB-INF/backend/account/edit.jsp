@@ -20,7 +20,8 @@
             <div class="col-md-4">
                 <input value="${account.id}" name="id" hidden="true">
                 <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" value="${account.username}" name="username" required>
+                <input type="text" class="form-control" id="username" value="${account.username}" name="username"
+                       required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -34,7 +35,8 @@
             </div>
             <div class="col-md-4">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" id="email" name="email" value="${account.email}" placeholder="Email" required>
+                <input type="email" class="form-control" id="email" name="email" value="${account.email}"
+                       placeholder="Email" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -45,14 +47,16 @@
                     select name="category" class="form-select" id="validationCustom04" required>
                     <option selected disabled value="">Chọn thể loại</option>
                     <c:forEach items="${roles}" var="role">
-                        <option value="${role.name}" <c:if test="${role.name == account.role}">selected</c:if>>${role.name}</option>
+                        <option value="${role.name}"
+                                <c:if test="${role.name == account.role}">selected</c:if>>${role.name}</option>
                     </c:forEach>
                 </select>
                 </select>
             </div>
             <div class="col-md-6">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" value="${account.description}" name="description" placeholder="description" required>
+                <input type="text" class="form-control" id="description" value="${account.des}" name="description"
+                       placeholder="description" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
@@ -74,7 +78,6 @@
         </form>
     </div>
 </div>
-
 
 
 <jsp:include page="../common/foot.jsp"></jsp:include>

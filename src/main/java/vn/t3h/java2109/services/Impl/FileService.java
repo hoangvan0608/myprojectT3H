@@ -1,6 +1,7 @@
-package vn.t3h.java2109.services;
+package vn.t3h.java2109.services.Impl;
 
 import org.springframework.web.multipart.MultipartFile;
+import vn.t3h.java2109.services.IFileService;
 import vn.t3h.java2109.utils.FileUtils;
 
 import java.io.File;
@@ -10,7 +11,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
 
-public class FileService implements IFileService{
+public class FileService implements IFileService {
     private FileUtils fileManager = new FileUtils();
     private String linkFolder = "C:\\Users\\Admin\\Desktop\\ImageT3H";
 

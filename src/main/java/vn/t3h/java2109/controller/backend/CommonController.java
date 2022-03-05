@@ -22,7 +22,7 @@ public class CommonController {
             String fileName = FileUtils.saveFile(file);
             ResponseDTO responseDto = new ResponseDTO(1, fileName);
             return responseDto;
-        } catch (Exception e){
+        } catch (Exception e) {
         }
         ResponseDTO responseDto = new ResponseDTO(0, file.getOriginalFilename());
         return responseDto;

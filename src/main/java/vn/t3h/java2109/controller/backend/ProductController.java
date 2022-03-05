@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import vn.t3h.java2109.dto.CateogryDTO;
 import vn.t3h.java2109.dto.ProductDTO;
-import vn.t3h.java2109.services.CategoryService;
-import vn.t3h.java2109.services.ProductService;
+import vn.t3h.java2109.services.Impl.CategoryService;
+import vn.t3h.java2109.services.Impl.ProductService;
 
 import java.sql.*;
 import java.util.List;

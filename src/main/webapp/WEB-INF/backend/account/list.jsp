@@ -41,7 +41,7 @@
                         <td>${account.phone}</td>
                         <td>${account.email}</td>
                         <td>${account.role}</td>
-                        <td>${account.description}</td>
+                        <td>${account.des}</td>
 
                         <td><a href="/backend/account/edit/${account.id}">Sửa</a>
                             <a href="/backend/account/delete/${account.id}">Xóa</a></td>

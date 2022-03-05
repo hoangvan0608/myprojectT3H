@@ -4,13 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import vn.t3h.java2109.dto.ProductDTO;
-import vn.t3h.java2109.services.ProductService;
-import vn.t3h.java2109.utils.DbUtils;
+import vn.t3h.java2109.services.Impl.ProductService;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Controller
 public class FrontEndHomeController {
