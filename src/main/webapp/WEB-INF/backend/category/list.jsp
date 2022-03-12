@@ -24,6 +24,7 @@
                 <tr>
                     <th>STT</th>
                     <th>Tên loại sản phẩm</th>
+                    <th>Mô tả</th>
                     <th>Hành động</th>
                 </tr>
                 </thead>
@@ -33,6 +34,7 @@
                     <tr>
                         <th scope="row">${stt}</th>
                         <td>${category.name}</td>
+                        <td>${category.des}</td>
                         <td><a href="/backend/category/edit/${category.id}">Sửa</a>
                             <a href="/backend/category/delete/${category.id}">Xóa</a></td>
                     </tr>

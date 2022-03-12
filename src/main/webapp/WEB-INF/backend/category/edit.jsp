@@ -7,27 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <jsp:include page="../common/head.jsp"></jsp:include>
-    <title>Thêm thể loại sản phẩm</title>
+    <title>Sửa thể loại</title>
 </head>
 <body>
 <div class="container-fluid">
     <jsp:include page="../common/nav.jsp"></jsp:include>
-    <center><h1>Create Category</h1></center>
+    <center><h1>Edit Category</h1></center>
 
 
     <div class="container">
         <form class="row g-3 needs-validation" novalidate action="/backend/category/save" method="POST">
             <div class="col-md-6">
-<%--                <input value="${account.id}" name="id" hidden="true">--%>
+                <input value="${category.id}" name="id" hidden="true">
                 <label for="name" class="form-label">Tên thể loại</label>
-                <input type="text" class="form-control" id="name"  name="name" required>
+                <input type="text" class="form-control" id="name" value="${category.name}"  name="name" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>
             </div>
             <div class="col-md-6">
                 <label for="des" class="form-label">Mô tả</label>
-                <input type="text" class="form-control" id="des"  name="des" required>
+                <input type="text" class="form-control" id="des" value="${category.des}"  name="des" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>

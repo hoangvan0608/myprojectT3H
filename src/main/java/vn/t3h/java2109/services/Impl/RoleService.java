@@ -29,7 +29,8 @@ public class RoleService implements IRoleService {
     ModelMapper modelMapper;
     public List<RoleDTO> getAllRoles(){
         List<RoleEntity> roles = repository.findAll();
-        List<RoleDTO> dtos = modelMapper.map(roles, new TypeToken<List<RoleDTO>>(){}.getType());
-        return dtos;
+        return modelMapper.map(roles, new TypeToken<List<RoleDTO>>(){}.getType());
     }
+
+
 }

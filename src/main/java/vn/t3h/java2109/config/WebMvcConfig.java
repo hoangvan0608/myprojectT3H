@@ -9,7 +9,7 @@ import vn.t3h.java2109.utils.FileUtils;
 public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/api/product-image/**")
+        registry.addResourceHandler("/image/**")
                 .addResourceLocations("file:/" + FileUtils.PATH_IMAGE);
     }
 }

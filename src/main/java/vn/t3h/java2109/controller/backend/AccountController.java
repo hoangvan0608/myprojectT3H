@@ -1,13 +1,19 @@
 package vn.t3h.java2109.controller.backend;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import vn.t3h.java2109.dto.AccountDTO;
 import vn.t3h.java2109.dto.RoleDTO;
+import vn.t3h.java2109.dto.form.CreateAccount;
 import vn.t3h.java2109.services.Impl.AccountService;
 import vn.t3h.java2109.services.Impl.RoleService;
 
@@ -22,37 +28,50 @@ public class AccountController {
     AccountService accountService;
     @Autowired
     RoleService roleService;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
-    @RequestMapping(value = "new", method = RequestMethod.GET)
-    public String createAccount(Model model) throws SQLException {
+    Logger logger = LogManager.getLogger(AccountController.class);
+
+    @RequestMapping(value = "create", method = RequestMethod.GET)
+    public String createAccount(Model model) {
         List<RoleDTO> list = roleService.getAllRoles();
         model.addAttribute("roles", list);
         return "backend/account/create";
     }
 
-    //
-//    @RequestMapping(value = "save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
-//    public String saveAcount(RedirectAttributes model, AccountDTO dto)
-//    {
-//
-//        boolean result = accountService.saveAccount(dto);
-//        if(result)
-//        {
-//            if(dto.getId() == null)
-//            {
-//                model.addFlashAttribute("message", "Tạo mới thành công!");
-//            }
-//            else {
-//                model.addFlashAttribute("message", "Sửa thành công!");
-//            }
-//        }
-//        else {
-//            model.addFlashAttribute("message", "Thao tác thất bại!");
-//        }
-//        return "redirect:/backend/account/list";
-//    }
-//
-//
+
+    @RequestMapping(value = "save", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String saveAcount(RedirectAttributes model, CreateAccount dto) {
+
+        try {
+            dto.setPassword(passwordEncoder.encode(dto.getPassword()));
+            accountService.save(dto);
+            model.addFlashAttribute("message", "Tạo mới thành công!");
+            logger.warn("ok");
+
+        } catch (Exception e) {
+            model.addFlashAttribute("message", "Thao tác thất bại!");
+
+        }
+        return "redirect:/backend/account/list";
+    }
+
+    @RequestMapping(value = "update", method = RequestMethod.POST, consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String updateAccount(RedirectAttributes model, AccountDTO dto) {
+
+        try {
+            accountService.updateAccount(dto.getId(), dto);
+            model.addFlashAttribute("message", "Sửa thành công!");
+
+        } catch (Exception e) {
+            model.addFlashAttribute("message", "Thao tác thất bại!");
+
+        }
+        return "redirect:/backend/account/list";
+    }
+
+
     @RequestMapping(value = "edit/{id}", method = RequestMethod.GET)
     public String editAccount(@PathVariable(name = "id", required = false) Integer id, Model model) throws SQLException {
         AccountDTO dto = accountService.getAccountById(id);

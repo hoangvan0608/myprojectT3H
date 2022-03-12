@@ -66,7 +66,7 @@
             </div>
             <div class="col-md-6">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" name="description" placeholder="description" required>
+                <input type="text" class="form-control" id="description" name="des" placeholder="description" required>
                 <div class="valid-feedback">
                     Looks good!
                 </div>

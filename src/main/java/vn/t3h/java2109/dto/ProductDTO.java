@@ -1,6 +1,7 @@
 package vn.t3h.java2109.dto;
 
 import lombok.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @Getter
 @Setter

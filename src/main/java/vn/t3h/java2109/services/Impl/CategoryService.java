@@ -1,53 +1,44 @@
 package vn.t3h.java2109.services.Impl;
 
+import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import vn.t3h.java2109.dto.CateogryDTO;
-import vn.t3h.java2109.utils.DbUtils;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
+import vn.t3h.java2109.dto.CategoryDTO;
+import vn.t3h.java2109.model.CategoryEntity;
+import vn.t3h.java2109.repository.CategoryRepository;
+import vn.t3h.java2109.services.ICategoryService;
 import java.util.List;
 
+
 @Service
-public class CategoryService {
+public class CategoryService implements ICategoryService {
 
-    public List<CateogryDTO> getAllCategories() {
+    @Autowired
+    CategoryRepository category;
+    @Autowired
+    ModelMapper model;
 
-        List<CateogryDTO> list = new ArrayList<>();
-        try(Connection connection = DbUtils.getConnection())
-        {
-            try (Statement statement = connection.createStatement()) {
-              ResultSet resultSet = statement.executeQuery("Select * from category");
-              while (resultSet.next())
-              {
-                  list.add(new CateogryDTO(resultSet.getInt(1), resultSet.getString(2)));
-              }
-            } catch (Exception e)
-            {
-                e.printStackTrace();
-            }
-        } catch (Exception e){
-            e.printStackTrace();
-        }
-        return list;
+    @Override
+    public List<CategoryDTO> getAllCategories() {
+        List<CategoryEntity> categories = category.findAll();
+        return model.map(categories, new TypeToken<List<CategoryDTO>>(){}.getType());
     }
 
-    public String getCategryName(Integer id) throws SQLException {
-        String name = "";
-        try(Connection connection = DbUtils.getConnection()) {
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery("Select `name` from category where id = "+id);
-            if(resultSet != null){
-                while(resultSet.next()){
-                    name = resultSet.getString(1);
-                    break;
-                }
-            }
-        }
-        return  name;
+    @Override
+    public void saveCategory(CategoryDTO categoryDTO) {
+        category.save(model.map(categoryDTO, new TypeToken<CategoryEntity>(){}.getType()));
     }
+
+    @Override
+    public CategoryDTO getCategoryById(Integer id) {
+        return model.map(category.findById(id).get(),CategoryDTO.class);
+    }
+
+    @Override
+    public void deleteCategoryById(Integer id) {
+        category.deleteById(id);
+    }
+
 
 }

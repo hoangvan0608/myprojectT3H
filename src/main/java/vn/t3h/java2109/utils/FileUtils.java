@@ -30,7 +30,7 @@ public class FileUtils {
         return results[results.length - 1];
     }
 
-    public static String PATH_IMAGE = "C:\\Users\\TAV\\OneDrive\\Desktop\\My Project T3H\\img\\";
+    public static String PATH_IMAGE = "C:\\Users\\TAV\\OneDrive\\Desktop\\T3H_Image\\";
 
     public static   String saveFile(MultipartFile file) {
         File folder = new File(PATH_IMAGE);

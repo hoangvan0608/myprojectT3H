@@ -16,7 +16,7 @@
 
 
     <div class="container">
-        <form class="row g-3 needs-validation" novalidate action="/backend/account/save" method="POST">
+        <form class="row g-3 needs-validation" novalidate action="/backend/account/update" method="POST">
             <div class="col-md-4">
                 <input value="${account.id}" name="id" hidden="true">
                 <label for="username" class="form-label">Username</label>
@@ -55,7 +55,7 @@
             </div>
             <div class="col-md-6">
                 <label for="description" class="form-label">Description</label>
-                <input type="text" class="form-control" id="description" value="${account.des}" name="description"
+                <input type="text" class="form-control" id="description" value="${account.des}" name="des"
                        placeholder="description" required>
                 <div class="valid-feedback">
                     Looks good!

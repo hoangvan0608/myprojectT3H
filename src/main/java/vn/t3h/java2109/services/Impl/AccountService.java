@@ -5,6 +5,7 @@ import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import vn.t3h.java2109.dto.AccountDTO;
+import vn.t3h.java2109.dto.form.CreateAccount;
 import vn.t3h.java2109.model.AccountEntity;
 import vn.t3h.java2109.repository.AccountRepository;
 import vn.t3h.java2109.services.IAccountService;
@@ -24,27 +25,42 @@ public class AccountService implements IAccountService {
     @Override
     public List<AccountDTO> getAllAccounts() {
         List<AccountEntity> listEntities = accountRepository.findAll();
-        List<AccountDTO> listDtos = modelMapper.map(listEntities,
-                new TypeToken<List<AccountDTO>>(){}.getType());
 
-        return listDtos;
+        return modelMapper.map(listEntities,
+                new TypeToken<List<AccountDTO>>(){}.getType());
     }
 
     @Override
     public AccountDTO getAccountById(Integer id) {
         AccountEntity accountEntity =  accountRepository.findById(id).get();
-        AccountDTO accountDTO = modelMapper.map(accountEntity,
+        return modelMapper.map(accountEntity,
                 new TypeToken<AccountDTO>(){}.getType());
-        return accountDTO;
     }
 
     @Override
-    public void createAccount(AccountDTO account) {
-
+    public void save(CreateAccount account) {
+        accountRepository.save(modelMapper.map(account, new TypeToken<AccountEntity>(){}.getType()));
     }
 
     @Override
-    public void updateAccount(int id, AccountDTO account) {
-
+    public void updateAccount(Integer id, AccountDTO account) {
+        Optional<AccountEntity> accOpt = accountRepository.findById(id);
+        if(accOpt.isPresent())
+        {
+            AccountEntity accountEntity = accOpt.get();
+            accountEntity.setUsername(account.getUsername());
+            accountEntity.setEmail(account.getEmail());
+            accountEntity.setDes(account.getDes());
+            accountEntity.setPhone(account.getPhone());
+            accountEntity.setRole(account.getRole());
+            accountRepository.save(accountEntity);
+        }
     }
+
+    @Override
+    public void delete(Integer id) {
+        accountRepository.deleteById(id);
+    }
+
+
 }

@@ -7,22 +7,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Create Product</title>
+    <title>Edit Product</title>
     <jsp:include page="../common/head.jsp"></jsp:include>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 </head><!--/head-->
 
 <body>
 
 <jsp:include page="../common/nav.jsp"></jsp:include>
-
 <div class="container">
     <center><h1>Edit Product</h1></center>
     <form class="row g-3 needs-validation" novalidate action="/backend/product/save" method="post">
         <div class="col-md-5">
             <input name="id" value="${product.id}" hidden="true">
             <label for="name" class="form-label">Product name</label>
-            <input type="text" class="form-control" id="name" name="name" value="${product.name}" placeholder="Product name" required>
+            <input type="text" class="form-control" id="name" name="name" value="${product.name}"
+                   placeholder="Product name" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -32,7 +33,8 @@
         </div>
         <div class="col-md-4">
             <label for="des" class="form-label">Product Description</label>
-            <input type="text" class="form-control" id="des" value="${product.des}" name="des" placeholder="Product name" required>
+            <input type="text" class="form-control" id="des" value="${product.des}" name="des"
+                   placeholder="Product name" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -45,7 +47,8 @@
             <select name="category" class="form-select" id="validationCustom04" required>
                 <option selected disabled value="">Chọn thể loại</option>
                 <c:forEach items="${category}" var="category">
-                    <option value="${category.id}" <c:if test="${product.category == category.id}">selected</c:if>>${category.name}</option>
+                    <option value="${category.id}"
+                            <c:if test="${product.category == category.id}">selected</c:if>>${category.name}</option>
                 </c:forEach>
             </select>
             <div class="invalid-feedback">
@@ -54,7 +57,8 @@
         </div>
         <div class="col-md-4">
             <label for="price" class="form-label">Product price</label>
-            <input type="number" min = "0" class="form-control" id="price" value="${product.price}" name="price" placeholder="Product price" required>
+            <input type="number" min="0" class="form-control" id="price" value="${product.price}" name="price"
+                   placeholder="Product price" required>
             <div class="valid-feedback">
                 Looks good!
             </div>
@@ -62,13 +66,19 @@
                 Vui lòng nhập giá
             </div>
         </div>
-        <div class="col-md-8">
-            <label for="img" class="form-label">Product image file</label>
-            <input class="form-control" name="img" type="file" id="img" src="api/product-image/${product.img}" required >  <%--/${product.img} = 1--%>
-            <%--                <div class="valid-feedback">--%>
-            <%--                    Looks good!--%>
-            <%--                </div>--%>
+        <div class="col-md-4">
+            <label for="fileUploadId" class="form-label">Tải file</label>
+            <input type="file" class="form-control" id="fileUploadId">
+            <input type="text" name="img" hidden class="form-control" id="fileUploadName" required>
+            <div class="invalid-feedback">
+                Vui lòng chọn file.
+            </div>
         </div>
+
+        <div class="col-md-4">
+            <img id="outputImage" src="/image/${product.img}" width="100px"/>
+        </div>
+
 
         <div class="col-12">
             <div class="form-check">
@@ -88,6 +98,8 @@
     </form>
 </div>
 <jsp:include page="../common/foot.jsp"></jsp:include>
+</body>
+
 </html>
 <script>
     // Example starter JavaScript for disabling form submissions if there are invalid fields
@@ -111,3 +123,4 @@
             })
     })()
 </script>
+

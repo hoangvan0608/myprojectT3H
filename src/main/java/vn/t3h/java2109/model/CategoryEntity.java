@@ -20,4 +20,8 @@ public class CategoryEntity {
     @Basic
     @Column(name = "name")
     private String name;
+
+    @Basic
+    @Column(name = "des")
+    private String des;
 }

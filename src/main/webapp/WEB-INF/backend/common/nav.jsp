@@ -28,9 +28,16 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle " href="#" id="dropdownXxl class11" data-bs-toggle="dropdown" aria-expanded="false">Thể loại</a>
+                    <ul class="dropdown-menu hove" aria-labelledby="dropdownXxl">
+                        <li><a class="dropdown-item" href="/backend/category/create">Tạo mới</a></li>
+                        <li><a class="dropdown-item" href="/backend/category/list">Danh sách</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle " href="#" id="dropdownXxl class1" data-bs-toggle="dropdown" aria-expanded="false">Tài khoản</a>
                     <ul class="dropdown-menu hove" aria-labelledby="dropdownXxl">
-                        <li><a class="dropdown-item" href="/backend/account/new">Tạo mới</a></li>
+                        <li><a class="dropdown-item" href="/backend/account/create">Tạo mới</a></li>
                         <li><a class="dropdown-item" href="/backend/account/list">Danh sách</a></li>
                     </ul>
                 </li>

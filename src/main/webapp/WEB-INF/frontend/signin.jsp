@@ -23,9 +23,12 @@
     <script src="frontend/js/respond.min.js"></script>
     <![endif]-->
     <link rel="shortcut icon" href="frontend/images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="frontend/images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="frontend/images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="frontend/images/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144"
+          href="frontend/images/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114"
+          href="frontend/images/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72"
+          href="frontend/images/ico/apple-touch-icon-72-precomposed.png">
     <link rel="apple-touch-icon-precomposed" href="frontend/images/ico/apple-touch-icon-57-precomposed.png">
 </head>
 <!--/head-->
@@ -67,7 +70,7 @@
             <div class="row">
                 <div class="col-sm-4">
                     <div class="logo pull-left">
-                        <a href="index.html"><img src="frontend/images/home/logo.png" alt="" /></a>
+                        <a href="index.html"><img src="frontend/images/home/logo.png" alt=""/></a>
                     </div>
                     <div class="btn-group pull-right">
                         <div class="btn-group">
@@ -150,7 +153,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="search_box pull-right">
-                        <input type="text" placeholder="Search" />
+                        <input type="text" placeholder="Search"/>
                     </div>
                 </div>
             </div>
@@ -169,8 +172,8 @@
                     <!--login form-->
                     <h2>Login to your account</h2>
                     <form action="/backend/validate" method="POST">
-                        <input type="email" name="email" placeholder="Your email" />
-                        <input type="password" name="password" placeholder="Your password" />
+                        <input type="email" name="email" placeholder="Your email"/>
+                        <input type="password" name="password" placeholder="Your password"/>
                         <span>
 								<input type="checkbox" class="checkbox">
 								Keep me signed in
@@ -188,9 +191,9 @@
                     <!--sign up form-->
                     <h2>New User Signup!</h2>
                     <form action="#">
-                        <input type="text" placeholder="Name" />
-                        <input type="email" placeholder="Email Address" />
-                        <input type="password" placeholder="Password" />
+                        <input type="text" placeholder="Name"/>
+                        <input type="email" placeholder="Email Address"/>
+                        <input type="password" placeholder="Password"/>
                         <button type="submit" class="btn btn-default">Signup</button>
                     </form>
                 </div>
@@ -218,7 +221,7 @@
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="frontend/images/home/iframe1.png" alt="" />
+                                    <img src="frontend/images/home/iframe1.png" alt=""/>
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -233,7 +236,7 @@
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="frontend/images/home/iframe2.png" alt="" />
+                                    <img src="frontend/images/home/iframe2.png" alt=""/>
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -248,7 +251,7 @@
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="frontend/images/home/iframe3.png" alt="" />
+                                    <img src="frontend/images/home/iframe3.png" alt=""/>
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -263,7 +266,7 @@
                         <div class="video-gallery text-center">
                             <a href="#">
                                 <div class="iframe-img">
-                                    <img src="frontend/images/home/iframe4.png" alt="" />
+                                    <img src="frontend/images/home/iframe4.png" alt=""/>
                                 </div>
                                 <div class="overlay-icon">
                                     <i class="fa fa-play-circle-o"></i>
@@ -276,7 +279,7 @@
                 </div>
                 <div class="col-sm-3">
                     <div class="address">
-                        <img src="frontend/images/home/map.png" alt="" />
+                        <img src="frontend/images/home/map.png" alt=""/>
                         <p>505 S Atlantic Ave Virginia Beach, VA(Virginia)</p>
                     </div>
                 </div>
@@ -339,10 +342,10 @@
                     <div class="single-widget">
                         <h2>About Shopper</h2>
                         <form action="#" class="searchform">
-                            <input type="text" placeholder="Your email address" />
+                            <input type="text" placeholder="Your email address"/>
                             <button type="submit" class="btn btn-default"><i
                                     class="fa fa-arrow-circle-o-right"></i></button>
-                            <p>Get the most recent updates from <br />our site and be updated your self...</p>
+                            <p>Get the most recent updates from <br/>our site and be updated your self...</p>
                         </form>
                     </div>
                 </div>
@@ -363,7 +366,6 @@
 
 </footer>
 <!--/Footer-->
-
 
 
 <script src="frontend/js/jquery.js"></script>
