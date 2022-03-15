@@ -32,7 +32,7 @@
             <th scope="row">${product.id}</th>
             <td>${product.name}</td>
             <td>${product.price}</td>
-            <td><img width="50px" src="/image/${product.img}"></td>
+            <td><img width="50px" src="/api/image/${product.img}"></td>
             <td>${product.category}</td>
             <td><a href="/backend/product/edit/${product.id}">Sửa</a> <a href="/backend/product/delete/${product.id}">Xóa</a>
             </td>

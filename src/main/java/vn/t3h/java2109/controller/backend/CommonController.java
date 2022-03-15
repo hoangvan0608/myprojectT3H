@@ -12,20 +12,19 @@ import vn.t3h.java2109.utils.FileUtils;
 
 
 @Controller
-@RequestMapping("backend/common")
+@RequestMapping("/api/image")
 public class CommonController {
 
     @RequestMapping(value = "uploadFile", method = RequestMethod.POST)
     @ResponseBody
     // trả về 1 nếu thàng công, 0 nếu lỗi
-    public ResponseDTO taoMoiLoaiSanPham(@RequestParam("file") MultipartFile file) {
+    public String save(@RequestParam("file") MultipartFile file) {
         try {
             String fileName = FileUtils.saveFile(file);
-            ResponseDTO responseDto = new ResponseDTO(1, fileName);
-            return responseDto;
+            return fileName;
         } catch (Exception e) {
+            e.printStackTrace();
         }
-        ResponseDTO responseDto = new ResponseDTO(0, file.getOriginalFilename());
-        return responseDto;
+        return "";
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import vn.t3h.java2109.dto.form.UserDetailCustom;
 import vn.t3h.java2109.model.AccountEntity;
 import vn.t3h.java2109.repository.AccountRepository;
 
@@ -29,12 +30,10 @@ public class UserDetailServiceImpl implements UserDetailsService {
         grantedAuthorities.add(new SimpleGrantedAuthority("ROLE_" + userEntity.getRole()));
 
 
-        return new org
-                .springframework
-                .security
-                .core
-                .userdetails
-                .User(userEntity.getUsername(), userEntity.getPassword(), grantedAuthorities);
-
+        UserDetailCustom userDetailCustom = new UserDetailCustom(userEntity.getUsername(), userEntity.getPassword(), grantedAuthorities);
+        userDetailCustom.setEmail(userEntity.getEmail());
+        userDetailCustom.setPhone(userEntity.getPhone());
+        userDetailCustom.setId(userEntity.getId());
+        return userDetailCustom;
     }
 }

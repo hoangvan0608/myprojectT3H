@@ -290,7 +290,7 @@
                             <div class="product-image-wrapper">
                                 <div class="single-products">
                                     <div class="productinfo text-center">
-                                        <img src="/image/${product.img}" alt=""/>
+                                        <img src="/api/image/${product.img}" alt=""/>
                                         <h2>$${product.price}</h2>
                                         <p>${product.name}</p>
                                         <a href="#" class="btn btn-default add-to-cart"><i

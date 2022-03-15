@@ -20,7 +20,7 @@
         $.ajax({// gọi api từ client lên server
             type: "POST",
             enctype: 'multipart/form-data',
-            url: "/backend/common/uploadFile",
+            url: "/api/image/uploadFile",
             xhr: function () {
                 var myXhr = $.ajaxSettings.xhr();
                 // if (myXhr.upload) {
@@ -29,11 +29,11 @@
                 return myXhr;
             },
             success: function (data) {
-                if (data.status == 1) {
-                    $('#fileUploadName').val(data.data);
-                    alert("Tải file " + data.data + " thành công");
+                if (data) {
+                    $('#fileUploadName').val(data);
+                    alert("Tải file " + data + " thành công");
                 }
-                else alert("Tải file " + data.data + " thất bại");
+                else alert("Tải file " + data + " thất bại");
             },
             error: function (error) {
                 alert("Có lỗi xảy ra!");

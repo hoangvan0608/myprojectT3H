@@ -3,6 +3,7 @@ package vn.t3h.java2109.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,6 +15,11 @@ import vn.t3h.java2109.services.Impl.UserDetailServiceImpl;
 
 @Configuration
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(
+        prePostEnabled = true,
+        securedEnabled = true,
+        jsr250Enabled = true
+)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Bean
@@ -42,16 +48,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // những thằng api có chứa backend thì bắt buộc phải xác thực (user đăng nhạp)
                 .anyRequest().permitAll();// nhưng request còn lại thì cho vào (khách)
         http.formLogin()
-                .loginPage("/_admin/login")// đường dẫn để đến trang login
-                .loginProcessingUrl("/_admin/doLogin")// api đăng ký để nhận xử lý luoong login
-                .usernameParameter("username")// name trong form login
-                .passwordParameter("password")// mật khẩu trong forrm login
-                .defaultSuccessUrl("/backend/product/list")// đường dẫn mặc định sau khi login thành công
-                .failureUrl("/_admin/login?message=error"); // trả về nếu login lỗi
+            .loginPage("/_admin/login")// đường dẫn để đến trang login
+            .loginProcessingUrl("/_admin/doLogin")// api đăng ký để nhận xử lý luoong login
+            .usernameParameter("username")// name trong form login
+            .passwordParameter("password")// mật khẩu trong forrm login
+            .defaultSuccessUrl("/backend/product/list")// đường dẫn mặc định sau khi login thành công
+            .failureUrl("/_admin/login?message=error"); // trả về nếu login lỗi
         http.csrf().disable();
     }
 
     public void configure(WebSecurity web) throws Exception {
         web.ignoring().antMatchers("/api/**");
+
     }
 }

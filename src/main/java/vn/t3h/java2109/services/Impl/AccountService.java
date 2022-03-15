@@ -3,6 +3,8 @@ package vn.t3h.java2109.services.Impl;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import vn.t3h.java2109.dto.AccountDTO;
 import vn.t3h.java2109.dto.form.CreateAccount;
@@ -21,6 +23,8 @@ public class AccountService implements IAccountService {
     AccountRepository accountRepository;
     @Autowired
     ModelMapper modelMapper;
+    @Autowired
+    PasswordEncoder encoder;
 
     @Override
     public List<AccountDTO> getAllAccounts() {
@@ -39,6 +43,7 @@ public class AccountService implements IAccountService {
 
     @Override
     public void save(CreateAccount account) {
+        account.setPassword(encoder.encode(account.getPassword()));
         accountRepository.save(modelMapper.map(account, new TypeToken<AccountEntity>(){}.getType()));
     }
 
